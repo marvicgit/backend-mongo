@@ -127,3 +127,6 @@ app.delete('/:id', mdAutenticacion.verificaToken, (req, res) => {
     })
 });
 module.exports = app;
+
+// 
+// iFQ6Hm4rJH7TqgKhHdhvkhyj
