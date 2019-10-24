@@ -64,6 +64,7 @@ app.post('/google', async (req, res) => {
                 return res.status(200).json({
                     ok: true,
                     token: token,
+                    usuario: usuarioBD,
                     id: usuarioBD._id
                 });
             }
@@ -87,21 +88,16 @@ app.post('/google', async (req, res) => {
                         errors: err
                     });
                 } 
-        
+                var token = jwt.sign({ usuario: usuarioSave }, SEED,{ expiresIn: 14400 })
                 return res.status(201).json({
                     ok: true,
-                    body: usuarioSave,
-                    usuarioToken: req.usuario
+                    usuario: usuarioSave,
+                    token: token,
+                    id: usuarioSave._id
                 });
             });
         }
-    });
-                        
-    return res.status(200).json({
-        ok: true,
-        mensaje: 'Ok',
-        googleUser: googleUser
-    })
+    });               
 });
 // ===========================================
 // Autenticacion Normal
@@ -138,6 +134,7 @@ app.post('/', (req, res) => {
         return res.status(200).json({
             ok: true,
             token: token,
+            usuario: usuarioBD,
             id: usuarioBD._id
         })
     })
