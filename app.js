@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // conexion a la base de datos
+//mongoose.connect('mongodb://localhost:27017/hospitalDB', { useNewUrlParser: true })
 mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, res) => {
     if(err) throw err;
     console.log('Base de datos: online');
